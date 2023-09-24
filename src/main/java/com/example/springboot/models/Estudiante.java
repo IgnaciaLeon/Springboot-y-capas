@@ -5,6 +5,9 @@ import jakarta.validation.constraints.*;
 
 
 //Le indicamos que esta es una entidad que debe mapearse a la base de datos
+//el mapeo de datos es la integración de muchos conjuntos de datos en un diseño. Varios conjuntos
+// de datos con diferentes formas de identificar puntos comparables pueden unirse de tal manera que los
+//datos sean precisos y utilizables.
 //@ es una notación
 @Entity
 //Asignar un nombre a la tabla que se va a crear

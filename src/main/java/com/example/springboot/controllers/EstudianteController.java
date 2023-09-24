@@ -3,14 +3,15 @@ package com.example.springboot.controllers;
 import com.example.springboot.models.Estudiante;
 import com.example.springboot.services.EstudianteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 //Controlador que sigue patrón REST
-@RestController
+//@RestController
+@Controller
 
 //Permite indicar la ruta, en este caso es la ruta base para los estudiantes
 @RequestMapping("/")
@@ -25,10 +26,35 @@ public class EstudianteController {
     @Autowired
     EstudianteServiceImpl estudianteService;
 
+    //permite hacer todo tipo de peticiones, pero podemos especificar que tipo de petición queremos
+    //que haga, por defecto es GET
     @RequestMapping(value = "/estudiantes", method = RequestMethod.GET)
-    public List <Estudiante> enlistarEstudiantes() {
-        return estudianteService.listaDeEstudiantes();
+    public String nlistarEstudiantes(Model model) {
+        List<Estudiante> listaEstudiantes = estudianteService.listaDeEstudiantes();
+        model.addAttribute("estudiantes",listaEstudiantes);
+        return "estudiantes";
     }
 
+    @GetMapping("/registro")
+    public String mostrarFormulario(Model model) {//Model sirve para mapear algun objeto a la vista que estamos manejando.
+        //se debe importar la librería desde Franework ui
+        model.addAttribute("estudiante", new Estudiante()); //esto es para enviar el objeto o modelo al html
+        return "registro";
+         }
+
+         //Controlador que se va a encargar de guardar
+      @PostMapping("/nuevo")
+    public String guardarEstudiante(@ModelAttribute Estudiante nuevoEstudiante) {
+        // va a llamar al service y al método de guardar estudiante
+          estudianteService.guardarEstudiante(nuevoEstudiante);
+          return "redirect:/estudiantes";
+      }
+
+      //controlador para borrar por id
+      @PostMapping("/borrar/{id}")
+    public String borrarEstudiantePorId(@PathVariable Long id) {
+        estudianteService.borrarEstudiante(id);
+        return "redirect:/estudiantes";
+      }
 
 }

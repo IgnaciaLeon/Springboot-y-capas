@@ -11,4 +11,6 @@ public interface EstudianteService {
 
   Estudiante guardarEstudiante(Estudiante estudianteNuevo);
 
+  void borrarEstudiante(Long id);
+
 }

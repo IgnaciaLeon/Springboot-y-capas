@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Michi Estudiante</title>
+</head>
+<body>
+<a th:href="@{/}">Regresar al menú principal</a>
+<h1>Registra tu Michi Estudiante</h1>
+
+<form th:action="@{/nuevo}" method="post" th:object="${estudiante}">
+    <label>Nombre</label>
+    <input type="text" th:field="*{estudianteNombre}">
+
+    <label>Edad</label>
+    <input type="number" th:field="*{estudianteEdad}">
+
+    <label>Mail</label>
+    <input type="email" th:field="*{email}">
+
+    <button type="submit">Guardar</button>
+
+</form>
+</body>
+</html>
