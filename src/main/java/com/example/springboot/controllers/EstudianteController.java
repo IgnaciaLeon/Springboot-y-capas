@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 //Controlador que sigue patrón REST
 //@RestController
 @Controller
 
 //Permite indicar la ruta, en este caso es la ruta base para los estudiantes
 @RequestMapping("/")
-public class EstudianteController {
+public class EstudianteController{
 
     //GET
     //POST
@@ -56,5 +57,10 @@ public class EstudianteController {
         estudianteService.borrarEstudiante(id);
         return "redirect:/estudiantes";
       }
+
+      //
+
+
+
 
 }

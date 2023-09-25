@@ -9,8 +9,11 @@ public interface EstudianteService {
 
   List <Estudiante> listaDeEstudiantes();
 
+  Estudiante buscarEstudiantePorId(Long id);
   Estudiante guardarEstudiante(Estudiante estudianteNuevo);
 
   void borrarEstudiante(Long id);
+
+  Estudiante editarEstudiantePorId(Long id, Estudiante estudianteActualizado);
 
 }
