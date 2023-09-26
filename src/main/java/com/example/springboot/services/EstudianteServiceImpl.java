@@ -79,6 +79,7 @@ public class EstudianteServiceImpl implements EstudianteService {
             Estudiante estudianteEscogido = estudianteRepository.findById(id).get();
             return estudianteEscogido; //--> el .get va a arrojar el estudiante que está ahí
         }else{
+            Long curso_id = 1L;
             System.out.println("El id es iválido o no existe");
             return null;
         }

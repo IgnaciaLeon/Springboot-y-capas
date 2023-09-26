@@ -39,7 +39,9 @@ public class Curso {
     @NotNull (message = "ingrese nombre del profesor")
     private LocalDate cursoFecha;
 
-    @OneToMany(mappedBy = "curso")
+    //Definimos la relacion desde el otro lado
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)// cascadetype.all para que todas las operaciones que se ejecuten en este modelo
+    //se haga también con los estudiantes
     //@JsonBackReference
     private List<Estudiante> estudiantesCurso;
 
