@@ -1,8 +1,11 @@
 package com.example.springboot.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+
+import java.util.List;
 
 
 //Le indicamos que esta es una entidad que debe mapearse a la base de datos
@@ -38,11 +41,21 @@ public class Estudiante {
  private String email;
 
  //Anotación para indicar relación de uno es a muchos
+ @JsonIgnore//Anotación para ignorar la informacion del curso en el JSON
  //@JsonManagedReference //Anotación que permite eliminar problemas de recursividad
  @ManyToOne
  @JoinColumn(name = "cursosid")// esta es la llave foranea
 //creamos el atributo que corresponde a un objeto de clase Curso
  private Curso curso;
+
+ @ManyToMany
+ @JoinTable(
+         name = "estudiantes_hobbies",
+         joinColumns = @JoinColumn(name = "estudianteId"), //estudianteId y hobbyId es el nuevo nombre que le damos a la
+         // columna relacional
+         inverseJoinColumns = @JoinColumn(name = "hobbyId")
+ )
+private List<Hobby> hobbiesEstudiante;
 
  //Constructor vacío
  public Estudiante() {

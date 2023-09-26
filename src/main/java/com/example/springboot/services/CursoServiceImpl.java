@@ -4,18 +4,26 @@ import com.example.springboot.models.Curso;
 import com.example.springboot.models.Estudiante;
 import com.example.springboot.repositories.CursoRepository;
 import com.example.springboot.repositories.EstudianteRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Transactional// viene del concepto de transacción (cuando se produce el proceso de guardado de algo nuevo en la bvase de datos)
 public class CursoServiceImpl implements CursoService {
     @Autowired
     CursoRepository cursoRepository;
 
     @Override
-    public List<Curso> listaDeCursos() {
+    public Curso crearCurso(Curso nuevoCurso){
+        return cursoRepository.save(nuevoCurso);
+    }
+
+
+    @Override
+    public List<Curso> enlistarCursos() {
         return cursoRepository.findAll();
     }
 

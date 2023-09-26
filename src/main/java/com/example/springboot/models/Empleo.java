@@ -2,16 +2,24 @@ package com.example.springboot.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table (name = "estudiantes_cyberpunk")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Empleo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long empleoId;
 
-    @Column (name = "nombre")
+    @Column(name = "nombre")
     @NotNull
     private String empleoNombre;
 
@@ -19,44 +27,9 @@ public class Empleo {
     @NotNull
     private Float empleoSueldo;
 
-    //Constructor vacío
-    public Empleo() {
-    }
-
-    //Constructor Lleno
-
-    public Empleo(Long empleoId, String empleoNombre, Float empleoSueldo) {
-        this.empleoNombre = empleoNombre;
-        this.empleoSueldo = empleoSueldo;
-    }
-
-    //Getter y setter
-
-    public Long getEmpleoId() {
-        return empleoId;
-    }
-
-
-    public String getEmpleoNombre() {
-        return empleoNombre;
-    }
-
-    public void setEmpleoNombre(String empleoNombre) {
-        this.empleoNombre = empleoNombre;
-    }
-
-    public Float getEmpleoSueldo() {
-        return empleoSueldo;
-    }
-
-    public void setEmpleoSueldo(Float empleoSueldo) {
-        this.empleoSueldo = empleoSueldo;
-    }
-
-
-    //Poner alumno FK
-
-
+    //anotacion para relación 1:1
+    @OneToOne
+    private Estudiante estudiante;
 
 }
 

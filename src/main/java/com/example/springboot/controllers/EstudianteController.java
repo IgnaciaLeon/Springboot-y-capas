@@ -14,8 +14,6 @@ import java.util.List;
 //@RestController
 @Controller
 
-//Permite indicar la ruta, en este caso es la ruta base para los estudiantes
-@RequestMapping("/")
 public class EstudianteController{
 
     //GET

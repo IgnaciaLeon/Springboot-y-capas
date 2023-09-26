@@ -15,13 +15,14 @@ public class EstudianteRestController {
     @Autowired
     EstudianteServiceImpl estudianteService;
 
-    @GetMapping("/estudiante/lista")
+    @GetMapping("/lista")
     public List<Estudiante> listaEstudiantes() {
         //return estudianteService.listaDeEstudiantes();
         List<Estudiante> listaMostrar = estudianteService.listaDeEstudiantes();
         return listaMostrar;
     }
 
+    //Buscar por Id
     @GetMapping("/estudiante/{id}")
     public Estudiante estudiantePorId(@PathVariable Long id)//nos permite pasar ua variable a través de la ruta
     {
@@ -53,7 +54,20 @@ public Estudiante editarEstudiantePorId(@PathVariable Long id, @RequestBody Estu
     return estudianteEditado;
 }
 
+//Para traer un estudiante por su nombre
+    @GetMapping("/estudiante/nombre/{nombre}")
+    public Estudiante buscarPorNombre(@PathVariable String nombre) {
+        Estudiante estudianteElegido = estudianteService.buscarEstudiantePorNombre(nombre);
+        System.out.println(estudianteElegido);
+        return estudianteElegido;
+    }
+
+    @GetMapping("/estudiante/lista/{curso}")
+    public List<Estudiante> enlistarPorCurso(@PathVariable String curso) {
+        List<Estudiante> listaEstudiantesCurso = estudianteService.buscarEstudiantesPorCursos(curso);
+        System.out.println(listaEstudiantesCurso);
+        return listaEstudiantesCurso;
+    }
+    }
 
 
-
-}

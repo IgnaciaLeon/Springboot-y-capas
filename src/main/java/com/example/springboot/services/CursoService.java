@@ -6,7 +6,7 @@ import com.example.springboot.models.Estudiante;
 import java.util.List;
 
 public interface CursoService {
-    List<Curso> listaDeCursos();
+    List<Curso> enlistarCursos();
 
     Curso buscarCursoPorId (Long id);
     Curso guardarCurso(Curso cursoNuevo);
@@ -15,6 +15,7 @@ public interface CursoService {
 
     Curso editarCursoPorId(Long id, Curso cursoActualizado);
 
+    Curso crearCurso(Curso nuevoCurso);
 }
 
 

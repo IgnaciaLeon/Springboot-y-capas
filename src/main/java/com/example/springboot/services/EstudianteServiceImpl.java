@@ -17,38 +17,39 @@ public class EstudianteServiceImpl implements EstudianteService {
 
     //Inyección de dependencias: permite la comunicación con otras capas
     @Autowired //esta notacion le dice a springboot que se inyecte dentro de esta capa en la que estamos, y le deja el control
-    //de las dependencias
+            //de las dependencias
             //dependencia: conjunto de código adicional que ayuda a realizar alguna tarea específica.
-    EstudianteRepository estudianteRepository;
+            EstudianteRepository estudianteRepository;
 
     //Método para traer una lista de todos los registros
     @Override
-    public List <Estudiante> listaDeEstudiantes () {
+    public List<Estudiante> listaDeEstudiantes() {
         return estudianteRepository.findAll();
     }
 
 
     //método para guardar un estudiante
     @Override
-    public Estudiante guardarEstudiante(Estudiante estudianteNuevo){
+    public Estudiante guardarEstudiante(Estudiante estudianteNuevo) {
 
         //Verificar si es que el estudiante ya existe
         //if (estudianteRepository.existsById(estudianteNuevo.getEstudianteId())) {
-           // System.out.println("El estudiante ya existe");
-           // return null;
+        // System.out.println("El estudiante ya existe");
+        // return null;
         //} else {
-            if (estudianteNuevo.getEstudianteEdad() < 18) {
-                System.out.println("El estudiante debe ser mayor de edad");
-                return null;
-            } else {
-                return estudianteRepository.save(estudianteNuevo);
-            }
+        if (estudianteNuevo.getEstudianteEdad() < 18) {
+            System.out.println("El estudiante debe ser mayor de edad");
+            return null;
+        } else {
+            return estudianteRepository.save(estudianteNuevo);
         }
-//Método para borrar según id, va a llamar al repository
-@Override
+    }
+
+    //Método para borrar según id, va a llamar al repository
+    @Override
     public void borrarEstudiante(Long id) {
         estudianteRepository.deleteById(id);
-}
+    }
 
     @Override
     public Estudiante editarEstudiantePorId(Long id, Estudiante estudianteActualizado) {
@@ -62,7 +63,7 @@ public class EstudianteServiceImpl implements EstudianteService {
             estudianteSeleccionado.setEmail(estudianteActualizado.getEmail());
             System.out.println("El estudiante ha sido actualizado");
             return estudianteRepository.save(estudianteSeleccionado);
-        }else{
+        } else {
             System.out.println("El estudiante no existe o el id es inválido");
             return null;
         }
@@ -78,14 +79,23 @@ public class EstudianteServiceImpl implements EstudianteService {
             // métodos con él pero no es un objeto en sí
             Estudiante estudianteEscogido = estudianteRepository.findById(id).get();
             return estudianteEscogido; //--> el .get va a arrojar el estudiante que está ahí
-        }else{
+        } else {
             Long curso_id = 1L;
             System.out.println("El id es iválido o no existe");
             return null;
         }
     }
 
+    public Estudiante buscarEstudiantePorNombre(String nombre) {
+        Estudiante estudiantePorNombre = estudianteRepository.findEstudianteByEstudianteNombre(nombre);
+        return estudiantePorNombre;
     }
+
+    public List<Estudiante> buscarEstudiantesPorCursos(String cursoNombre) {
+        List<Estudiante> estudiantesCurso = estudianteRepository.findAllByNombreCurso(cursoNombre);
+        return estudiantesCurso;
+    }
+}
 //}
 
 
