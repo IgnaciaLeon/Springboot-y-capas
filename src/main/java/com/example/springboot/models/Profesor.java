@@ -34,7 +34,6 @@ public class Profesor {
 
 
     public Profesor(Long profesorId, String profesorNombre, String materiaImpartida, Integer profesorEdad) {
-        this.profesorId = profesorId;
         this.profesorNombre = profesorNombre;
         this.materiaImpartida = materiaImpartida;
         this.profesorEdad = profesorEdad;

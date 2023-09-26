@@ -1,5 +1,6 @@
 package com.example.springboot.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -33,6 +34,12 @@ public class Estudiante {
 @Email (message = "debes introducir un mail válido")
 @NotNull
  private String email;
+
+//Anotación para indicar relación de uno es a muchos
+ //@JsonManagedReference //Anotación que permite eliminar problemas de recursividad
+@ManyToOne
+@JoinColumn(name = "cursosid")// esta es la llave foranea
+private Curso curso;
 
 //Constructor vacío
  public Estudiante() {

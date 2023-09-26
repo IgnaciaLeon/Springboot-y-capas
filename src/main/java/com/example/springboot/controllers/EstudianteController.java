@@ -30,7 +30,7 @@ public class EstudianteController{
     //permite hacer todo tipo de peticiones, pero podemos especificar que tipo de petición queremos
     //que haga, por defecto es GET
     @RequestMapping(value = "/estudiantes", method = RequestMethod.GET)
-    public String nlistarEstudiantes(Model model) {
+    public String enlistarEstudiantes(Model model) {
         List<Estudiante> listaEstudiantes = estudianteService.listaDeEstudiantes();
         model.addAttribute("estudiantes",listaEstudiantes);
         return "estudiantes";

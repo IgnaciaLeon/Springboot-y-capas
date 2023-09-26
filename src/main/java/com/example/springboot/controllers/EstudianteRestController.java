@@ -10,12 +10,12 @@ import java.util.List;
 //Controlador que siga patrón REST
 
 @RestController
-@RequestMapping("/api")//La ruta base
+@RequestMapping("api/")//La ruta base
 public class EstudianteRestController {
     @Autowired
     EstudianteServiceImpl estudianteService;
 
-    @GetMapping("/lista")
+    @GetMapping("/estudiante/lista")
     public List<Estudiante> listaEstudiantes() {
         //return estudianteService.listaDeEstudiantes();
         List<Estudiante> listaMostrar = estudianteService.listaDeEstudiantes();
@@ -39,7 +39,8 @@ public class EstudianteRestController {
     }
 //Para borrar
     @DeleteMapping("/estudiante/borrar")//localhost:8080/api/estudiante/borrar?id=2
-    public String borrarEstudiantePorId(@RequestParam Long id) {
+    public String borrarEstudiantePorId(@RequestParam Long id) { //requestparam tiene una funcionalidad parecia a
+        // pathvariable pero con otra sintaxis en la url
         estudianteService.borrarEstudiante(id);
         return "El estudiante ha sido borrado";
 
